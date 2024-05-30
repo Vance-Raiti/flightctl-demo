@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      fleet: basic-nginx-fleet
+      fleet: vraiti-demo-fleet
   template:
     spec:
       os:
