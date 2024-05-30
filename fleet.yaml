@@ -1,0 +1,36 @@
+apiVersion: v1alpha1
+kind: Fleet
+metadata:
+  name: basic-nginx-fleet
+spec:
+  selector:
+    matchLabels:
+      fleet: basic-nginx-fleet
+  template:
+    spec:
+      os:
+        image: quay.io/vraiti/flightctl-agent-basic-nginx:latest
+      config:
+        - name: motd-update
+          configType: InlineConfigProviderSpec
+          inline:
+            ignition:
+              version: 3.4.0
+            storage:
+              files:
+                - contents:
+                    source: >-
+                      data:,This%20system%20is%20managed%20by%20flightctl.%0A
+                  mode: 422
+                  overwrite: true
+                  path: "/etc/motd"
+        - name: microshift-manifests
+          configType: GitConfigProviderSpec
+          gitRef:  
+            repository: vraiti-flightctl-demo
+            targetRevision: main
+            path: /configuration
+      systemd:
+        matchPatterns:
+          - "microshift.service"
+          - "flightctl-agent.service"
