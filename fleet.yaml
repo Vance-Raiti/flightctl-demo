@@ -9,7 +9,7 @@ spec:
   template:
     spec:
       os:
-        image: quay.io/flightctl/flightctl-agent-basic-nginx:latest
+        image: quay.io/vraiti/flightctl-agent-basic-nginx:latest
       config:
         - name: motd-update
           configType: InlineConfigProviderSpec
