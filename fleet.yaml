@@ -27,7 +27,7 @@ spec:
         - name: microshift-manifests
           configType: GitConfigProviderSpec
           gitRef:  
-            repository: vraiti-flightctl-demo
+            repository: vraiti-demo-repo
             targetRevision: main
             path: /configuration
       systemd:
