@@ -1,7 +1,7 @@
 apiVersion: v1alpha1
 kind: Fleet
 metadata:
-  name: basic-nginx-fleet
+  name: vraiti-demo-fleet
 spec:
   selector:
     matchLabels:
