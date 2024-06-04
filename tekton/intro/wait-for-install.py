@@ -8,7 +8,8 @@ wait_for = [bytes(arg,'ascii') for arg in sys.argv[1:]]
 
 while len(wait_for):
     line = watcher.stdout.readline()
-    print(str(line))
+    if len(line):
+        print(str(line))
     for i,pckg in enumerate(wait_for):
         if line.find(pckg) != -1:
             break

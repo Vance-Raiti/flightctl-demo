@@ -1,0 +1,19 @@
+apiVersion: trigger.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: hello-template
+spec:
+  params:
+    - name: username
+      default: "USERNAME"
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metatdata:
+        generateName: hello-goodbye-run-
+      spec:
+        pipelineRef:
+          name: hello-goodbye
+        params:
+          - name: username
+            value: $(tt.params.username)

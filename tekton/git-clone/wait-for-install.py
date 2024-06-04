@@ -5,7 +5,6 @@ cmd = "kubectl get pods --namespace tekton-pipelines --watch"
 watcher = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
 
 wait_for = [bytes(arg,'ascii') for arg in sys.argv[1:]]
-
 while len(wait_for):
     line = watcher.stdout.readline()
     print(str(line))
