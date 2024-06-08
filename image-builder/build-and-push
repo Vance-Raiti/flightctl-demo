@@ -1,5 +1,7 @@
 #!/bin/sh
 
+find / -name Containerfile
+
 cd $GITHUB_WORKSPACE/container-context
 
 podman login -u $PODMAN_USER -p $PODMAN_PASSWORD $PODMAN_REGISTRY
