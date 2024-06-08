@@ -17,7 +17,8 @@ jobs:
         with:
           username: env.USER
           password: env.PASSWORD
-
+          registry: env.REGISTRY
+      
       - name: build
         uses: redhat-actions/buildah-build@v2
         with:
