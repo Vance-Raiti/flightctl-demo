@@ -1,0 +1,14 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: build-and-push-binding
+spec:
+  params:
+    - name: repo-url
+      value: $(body.repo-url)
+    - name: image-tag
+      value: $(body.image-tag)
+    - name: podman-user
+      value: $(body.podman-user)
+    - name: podman-registry
+      value: $(body.podman-registry)

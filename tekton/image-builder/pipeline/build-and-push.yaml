@@ -1,0 +1,34 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-and-push
+spec:
+  params:
+    - name: repo-url
+      type: string
+    - name: image-tag
+      type: string
+    - name: podman-user
+      type: string
+    - name: podman-registry
+      type: string
+  workspaces:
+    - name: podman-password
+      mountPath: /secrets/podman-password
+  steps:
+    - name: build-and-push
+      image: quay.io/vraiti/image-builder:latest
+      env:
+        - name: REPO
+          value: $(params.repo-url)
+        - name: IMAGE_TAG
+          value: $(params.image-tag)
+        - name: PODMAN_USER
+          value: $(params.podman-user)
+        - name: PODMAN_REGISTRY
+          value: $(params.podman-registry)
+      script: |
+        #!/usr/bin/env sh
+        export PODMAN_PASSWORD=$(cat /secrets/podman-password/password)
+        run-as-podman
+        

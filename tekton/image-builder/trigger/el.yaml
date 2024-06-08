@@ -1,0 +1,12 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: build-and-push-listener
+spec:
+  serviceAccountName: tekton-triggers-example-sa
+  triggers:
+    - name: build-and-push-listener
+      bindings:
+        - ref: build-and-push-trigger
+      template:
+        ref : build-and-push-template

@@ -4,14 +4,14 @@ on: [push]
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    container:
-      image: quay.io/vraiti/image-builder:latest 
-      env:
-        PODMAN_USER: "vraiti"
-        PODMAN_PASSWORD: ${{ secrets.podman_password }}
-        PODMAN_REGISTRY: "quay.io"
-        IMAGE_TAG: "demo"
-        REPO: https://github.com/Vance-Raiti/flightctl-demo.git
-    steps:
-      - name: build-and-push
-        run: run-as-podman
+    steps:  
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: buildah
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: "demo"
+          tags: "latest"
+          containerfiles: |
+            ./build-context/Containerfile

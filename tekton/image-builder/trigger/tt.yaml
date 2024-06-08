@@ -1,0 +1,31 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: github-trigger-template
+spec:
+  params:
+    - name: image-tag
+      default: "demo"
+    - name: repo-url
+      default: "https://github.com/Vance-Raiti/flightctl-demo.git"
+    - name: podman-user
+      default: "vraiti"
+    - name: podman-registry
+      default: "quay.io"
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: build-and-push-run-
+      spec:
+        pipelineRef:
+          name: build-and-push-pipeline
+        params:
+          - name: image-tag
+            value: $(tt.params.image-tag)
+          - name: repo-url
+            value: $(tt.params.repo-url)
+          - name: podman-user
+            value: $(tt.params.podman-user)
+          - name: podman-registry
+            value: $(tt.params.podman-registry)

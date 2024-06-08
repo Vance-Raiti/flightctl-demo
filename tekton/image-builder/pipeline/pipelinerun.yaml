@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: clone-build-push-run-
+spec:
+  pipelineRef:
+    name: clone-build-push
+  podTemplate:
+    securityContext:
+      fsGroup: 65532
+  workspaces:
+  - name: podman-password
+    secret:
+      secretName: podman-password
+  params:
+  - name: repo-url
+    value: https://github.com/Vance-Raiti/flightctl-demo.git
+  - name: image-tag
+    value: demo
+  - name: podman-user
+    value: vraiti
+  - name: podman-registry
+    value: quay.io
+
