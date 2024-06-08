@@ -1,5 +1,5 @@
 #!/bin/sh
-
+ls $GITHUB_WORKSPACE
 cd `ls $GITHUB_WORKSPACE`/container-context
 
 podman login -u $PODMAN_USER -p $PODMAN_PASSWORD $PODMAN_REGISTRY

@@ -1,9 +1,6 @@
 name: build-push
 run-name: Building new container image
-on:
-  push:
-    paths:
-      - 'build-context/**'
+on: [push]
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
