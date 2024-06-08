@@ -11,12 +11,12 @@ jobs:
         PODMAN_PASSWORD: ${{ secrets.podman_password }}
         PODMAN_REGISTRY: "quay.io"
         IMAGE_TAG: "demo"
-        GITHUB_WORKSPACE: "/home"
+        GITHUB_WORKSPACE: "/git-repo"
       volumes:
         - /home
     steps:
       - name: checkout
-        run: git clone https://github.com/${{ github.action_repository }}.git /home
+        run: git clone https://github.com/${{ github.action_repository }}.git /git-repo
       
       - name: build-and-push
         run: build-and-push
