@@ -6,7 +6,16 @@ on:
       - 'build-context/**'
 jobs:
   build-and-push:
-    runs-on: quay.io/vraiti/image-builder:latest
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/vraiti/image-builder:latest 
+      env:
+        PODMAN_USER: "vraiti"
+        PODMAN_PASSWORD: ${{ secrets.podman_password }}
+        PODMAN_REGISTRY: "quay.io"
+        IMAGE_TAG: "demo"
+      volumes:
+        - /home
     steps:
       - name: checkout
         uses: actions/checkout@v4
