@@ -11,5 +11,6 @@ jobs:
         PODMAN_PASSWORD: ${{ secrets.podman_password }}
         PODMAN_REGISTRY: "quay.io"
         IMAGE_TAG: "demo"
+    steps:
       - name: build-and-push
         run: run-as-podman
