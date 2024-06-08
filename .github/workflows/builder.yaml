@@ -1,0 +1,12 @@
+name: build-push
+run-name: Building new container image
+on:
+  push:
+    paths:
+      - 'build-context/**'
+jobs:
+  build-and-push:
+    runs-on: quay.io/vraiti/image-builder:latest
+    steps:
+      - uses: actions/checkout@v4
+

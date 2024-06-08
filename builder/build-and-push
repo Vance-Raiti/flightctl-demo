@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cd `ls $GITHUB_WORKSPACE`/container-context
+
+podman login -u $PODMAN_USER -p $PODMAN_PASSWORD quay.io
+podman build -t $IMAGE_TAG .
+podman push quay.io/$PODMAN_USER/$IMAGE_TAG

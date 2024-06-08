@@ -1,0 +1,5 @@
+FROM quay.io/fedora/fedora:39
+
+RUN dnf install podman -y
+COPY build-and-push /usr/local/bin/build-and-push
+ENV GITHUB_WORKSPACE="/home"
