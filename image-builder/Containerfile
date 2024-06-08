@@ -1,4 +1,5 @@
 FROM quay.io/podman/stable:v5
 
 RUN dnf install git -y
-COPY build-and-push /usr/local/bin/build-and-push
+COPY run-as-podman /usr/local/bin/run-as-podman
+COPY build-and-push.sh /build-and-push.sh

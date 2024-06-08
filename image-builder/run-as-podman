@@ -1,0 +1,1 @@
+runuser -u podman -- bash /build-and-push.sh 

@@ -11,12 +11,5 @@ jobs:
         PODMAN_PASSWORD: ${{ secrets.podman_password }}
         PODMAN_REGISTRY: "quay.io"
         IMAGE_TAG: "demo"
-        GITHUB_WORKSPACE: "/git-repo"
-      volumes:
-        - /git-repo
-    steps:
-      - name: git-clone
-        run: git clone https://github.com/Vance-Raiti/flightctl-demo.git /git-repo
-      
       - name: build-and-push
-        run: build-and-push
+        run: run-as-podman
