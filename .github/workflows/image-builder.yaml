@@ -14,8 +14,9 @@ jobs:
 
       - name: login
         uses: redhat-actions/podman-login@v1
-        username: env.USER
-        password: env.PASSWORD
+        with:
+          username: env.USER
+          password: env.PASSWORD
 
       - name: build
         uses: redhat-actions/buildah-build@v2
