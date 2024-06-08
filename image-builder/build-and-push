@@ -1,6 +1,6 @@
 #!/bin/sh
-ls $GITHUB_WORKSPACE
-cd `ls $GITHUB_WORKSPACE`/container-context
+
+cd $GITHUB_WORKSPACE/container-context
 
 podman login -u $PODMAN_USER -p $PODMAN_PASSWORD $PODMAN_REGISTRY
 podman build -t $IMAGE_TAG .
