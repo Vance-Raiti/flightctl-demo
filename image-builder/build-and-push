@@ -2,9 +2,9 @@
 
 set -x
 
-find / -name Containerfile
-
 cd /git-repo/build-context
+
+cat *
 
 echo $PODMAN_USER $PODMAN_PASSWORD $PODMAN_REGISTRY
 
