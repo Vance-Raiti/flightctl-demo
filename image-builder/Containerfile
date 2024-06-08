@@ -1,5 +1,4 @@
-FROM quay.io/fedora/fedora:39
+FROM quay.io/podman/stable:v5
 
-RUN dnf install podman git -y
+RUN dnf install git -y
 COPY build-and-push /usr/local/bin/build-and-push
-ENV GITHUB_WORKSPACE="/home"

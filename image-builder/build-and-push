@@ -1,12 +1,8 @@
 #!/bin/sh
 
-set -x
+su podman
 
 cd /git-repo/build-context
-
-cat *
-
-echo $PODMAN_USER $PODMAN_PASSWORD $PODMAN_REGISTRY
 
 podman login -u $PODMAN_USER -p $PODMAN_PASSWORD $PODMAN_REGISTRY
 podman build -t $IMAGE_TAG .
