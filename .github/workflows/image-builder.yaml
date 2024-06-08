@@ -1,6 +1,10 @@
 name: build-push
 run-name: Building new container image
 on: [push]
+env:
+  USER: vraiti
+  PASSWORD: ${{ secrets.podman-password }}
+  REGISTRY: quay.io
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -8,10 +12,22 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: buildah
+      - name: login
+        uses: redhat-actions/podman-login@v1
+        username: env.USER
+        password: env.PASSWORD
+
+      - name: build
         uses: redhat-actions/buildah-build@v2
         with:
           image: "demo"
           tags: "latest"
           containerfiles: |
             ./build-context/Containerfile
+
+      - name: push
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: env.REGISTRY/env.USER
