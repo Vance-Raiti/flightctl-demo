@@ -8,10 +8,6 @@ cd /git-repo/build-context
 
 echo $PODMAN_USER $PODMAN_PASSWORD $PODMAN_REGISTRY
 
-a=$PODMAN_PASSWORD
-echo ${a:0:3}
-echo ${a:3:6}
-
 podman login -u $PODMAN_USER -p $PODMAN_PASSWORD $PODMAN_REGISTRY
 podman build -t $IMAGE_TAG .
 podman push $PODMAN_REGISTRY/$PODMAN_USER/$IMAGE_TAG
