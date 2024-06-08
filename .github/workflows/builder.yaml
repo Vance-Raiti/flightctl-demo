@@ -8,5 +8,13 @@ jobs:
   build-and-push:
     runs-on: quay.io/vraiti/image-builder:latest
     steps:
-      - uses: actions/checkout@v4
-
+      - name: checkout
+        uses: actions/checkout@v4
+      
+      - name: build-and-push
+        run: build-and-push
+        env:
+          PODMAN_USER: "vraiti"
+          PODMAN_PASSWORD: ${{ secrets.podman_password }}
+          PODMAN_REGISTRY: "quay.io"
+          IMAGE_TAG: "demo"
