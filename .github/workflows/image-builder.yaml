@@ -20,6 +20,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
       
       - name: build
+        id: build
         uses: redhat-actions/buildah-build@v2
         with:
           image: "demo"
@@ -31,5 +32,5 @@ jobs:
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ steps.build.outputs.image }}
-          tags: ${{ steps.build-image.outputs.tags }}
+          tags: ${{ steps.build.outputs.tags }}
           registry: ${{ env.REGISTRY }}/${{ env.USER }}
