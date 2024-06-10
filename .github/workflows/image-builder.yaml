@@ -3,7 +3,7 @@ run-name: Building new container image
 on: [push]
 env:
   USER: vraiti
-  PASSWORD: ${{ secrets.podman-password }}
+  PASSWORD: ${{ secrets.PODMAN_PASSWORD }}
   REGISTRY: quay.io
 jobs:
   build-and-push:
